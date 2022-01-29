@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.woc.mapper.UserMapper">
+<!--    通过id得到一个Account-->
+    <select id="getById" parameterType="Integer" resultType="com.example.woc.entity.Account">
+        select * from account where id = #{id}
+    </select>
+<!--    通过一个用户名得到一个Account-->
+    <select id="getByName" parameterType="String" resultType="com.example.woc.entity.Account">
+        select * from account where username = #{username}
+    </select>
+<!--    把Account存入-->
+    <insert id = "save" parameterType="com.example.woc.entity.Account" >
+        INSERT INTO account(id,username,password,email) VALUES(#{id},#{username},#{password},#{email});
+    </insert>
+<!--    得到Account总数-->
+    <select id="getAmount"  resultType="Integer">
+        SELECT COUNT(*) FROM account;
+    </select>
+<!--    通过用户名删除Account-->
+    <delete id="deleteAccount" parameterType="String" >
+        DELETE FROM account WHERE username = #{username};
+    </delete>
+</mapper>
